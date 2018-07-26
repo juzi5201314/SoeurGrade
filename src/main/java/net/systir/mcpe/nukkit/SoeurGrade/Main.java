@@ -6,7 +6,7 @@ public class Main extends PluginBase {
 
     private static Main me;
 
-    protected static Main This() {
+    public static Main This() {
         return me;
     }
 
@@ -18,5 +18,6 @@ public class Main extends PluginBase {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new EventListener(), this);
+        getServer().getPluginManager().registerEvents(new net.systir.mcpe.nukkit.SoeurGrade.gui.EventListener(), this);
     }
 }
