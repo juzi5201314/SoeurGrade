@@ -1,0 +1,8 @@
+name: SoeurGrade
+main: net.systir.mcpe.nukkit.SoeurGrade.Main
+version: "0.0.1"
+api: ["1.0.0"]
+#load: POSTWORLD
+author: 橘子
+description: A RPG plugin
+website: https://www.systir.cn
