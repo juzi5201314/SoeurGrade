@@ -16,8 +16,9 @@ public class CustomWindow extends FormWindowCustom implements Window {
         super("");
     }
 
-    public void Send(Player player) {
+    public Window Send(Player player) {
         player.showFormWindow(this);
+        return this;
     }
 
     public CustomWindow OnResponded(BiConsumer<FormResponse, Player> func) {

@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public interface Window {
     BiConsumer<FormResponse, Player> GetRespondedFunc();
     Consumer<Player> GetCloseFunc();
-    void Send(Player player);
+    Window Send(Player player);
     Window OnResponded(BiConsumer<FormResponse, Player> func);
     Window OnClose(Consumer<Player> func);
     Window SetTitle(String title);
