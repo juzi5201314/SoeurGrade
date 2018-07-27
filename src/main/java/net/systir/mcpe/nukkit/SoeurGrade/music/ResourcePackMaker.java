@@ -39,7 +39,7 @@ public class ResourcePackMaker {
         }
         this.name = data[data.length - 2];
         this.type = data[data.length - 1];
-        musicPath = new File(Main.This().getDataFolder(), "/music/"+ name);
+        musicPath = new File(Main.This().getDataFolder(), "/music/" + name);
         makeManifest();
         makeSound();
     }
@@ -59,12 +59,13 @@ public class ResourcePackMaker {
     private void clean() {
         if (musicPath.exists()) {
             deleteDir(musicPath.getAbsolutePath(), musicPath.list());
+            musicPath.delete();
         }
     }
 
     private void deleteDir(String dir, String[] files) {
         for (String filename : files) {
-            File subfile = new File(musicPath, filename);
+            File subfile = new File(dir, filename);
             if (subfile.isDirectory()) {
                 deleteDir(subfile.getAbsolutePath(), subfile.list());
                 subfile.delete();
@@ -74,13 +75,13 @@ public class ResourcePackMaker {
     }
 
     private void makeManifest() {
-        manifestModule.put("description", "SoeurGrade Music");
+        manifestModule.put("description", "SoeurGrade Music: " + name);
         manifestModule.put("type", "resources");
         manifestModule.put("uuid", headerUUID.toString());
         manifestModule.put("version", new int[]{1, 0, 0});
 
-        manifestHeader.put("description", "SoeurGrade Music");
-        manifestHeader.put("name", name);
+        manifestHeader.put("description", "SoeurGrade Music: " + name);
+        manifestHeader.put("name", "music." + name);
         manifestHeader.put("uuid", moduleUUID.toString());
         manifestHeader.put("version", new int[]{1, 0, 0});
 

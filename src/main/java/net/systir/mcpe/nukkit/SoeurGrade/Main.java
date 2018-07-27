@@ -29,9 +29,13 @@ public class Main extends PluginBase {
         new File(getDataFolder(), "/music/build").mkdirs();
         getServer().getPluginManager().registerEvents(new EventListener(), this);
         getServer().getPluginManager().registerEvents(new net.systir.mcpe.nukkit.SoeurGrade.gui.EventListener(), this);
+        getServer().getPluginManager().registerEvents(new net.systir.mcpe.nukkit.SoeurGrade.music.EventListener(), this);
 
-        ResourcePackMaker resourcePackMaker = new ResourcePackMaker("test.ogg");
-        resourcePackMaker.make();
+        for (File file : new File(getDataFolder(), "/music/").listFiles()) {
+            if (file.isFile() && file.getName().substring(file.getName().lastIndexOf(".") + 1).equals("ogg")) {
+                new ResourcePackMaker(file.getName()).make();
+            }
+        }
     }
 
     @Override

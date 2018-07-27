@@ -1,6 +1,7 @@
 package net.systir.mcpe.nukkit.SoeurGrade.gui;
 
 import cn.nukkit.Player;
+import cn.nukkit.form.element.Element;
 import cn.nukkit.form.response.FormResponse;
 import cn.nukkit.form.window.FormWindowCustom;
 
@@ -42,6 +43,11 @@ public class CustomWindow extends FormWindowCustom implements Window {
 
     public CustomWindow SetTitle(String title) {
         super.setTitle(title);
+        return this;
+    }
+
+    public CustomWindow AddElement(Element element) {
+        addElement(element);
         return this;
     }
 
