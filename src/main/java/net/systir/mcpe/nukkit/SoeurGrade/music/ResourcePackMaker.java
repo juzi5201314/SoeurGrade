@@ -8,6 +8,7 @@ import org.apache.tools.zip.ZipOutputStream;
 import org.jcodec.common.io.IOUtils;
 
 import java.io.*;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -81,7 +82,7 @@ public class ResourcePackMaker {
         manifestModule.put("version", new int[]{1, 0, 0});
 
         manifestHeader.put("description", "SoeurGrade Music: " + name);
-        manifestHeader.put("name", "music." + name);
+        manifestHeader.put("name", "music." + Base64.getEncoder().encodeToString(name.getBytes()));
         manifestHeader.put("uuid", moduleUUID.toString());
         manifestHeader.put("version", new int[]{1, 0, 0});
 
@@ -91,13 +92,13 @@ public class ResourcePackMaker {
     }
 
     private void makeSound() {
-        sound.put("name", "sounds/music/" + name);
+        sound.put("name", "sounds/music/" + Base64.getEncoder().encodeToString(name.getBytes()));
         sound.put("volume", 1);
 
         data.put("category", "music");
         data.put("sounds", new Map[]{sound});
 
-        definition.put("music." + name, data);
+        definition.put("music." + Base64.getEncoder().encodeToString(name.getBytes()), data);
     }
 
     private void makeRawPath() throws IOException {
@@ -105,7 +106,7 @@ public class ResourcePackMaker {
         Utils.writeFile(new File(musicPath, "/manifest.json"), new Gson().toJson(manifest));
         Utils.writeFile(new File(musicPath, "/sounds/sound_definitions.json"), new Gson().toJson(definition));
 
-        Utils.copyFile(music, new File(musicPath, "/sounds/music/" + name + ".ogg"));
+        Utils.copyFile(music, new File(musicPath, "/sounds/music/" + Base64.getEncoder().encodeToString(name.getBytes()) + ".ogg"));
     }
 
     private void compress() {

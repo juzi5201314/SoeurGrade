@@ -21,6 +21,8 @@
                   <include>org.jcodec:jcodec</include>
                   <include>org.jcodec:jcodec-javase</include>
                   <include>org.apache.ant:ant</include>
+                  <include>org.gagravarr:vorbis-java-tools</include>
+                  <include>org.gagravarr:vorbis-java-core</include>
                 </includes>
               </artifactSet>
             </configuration>

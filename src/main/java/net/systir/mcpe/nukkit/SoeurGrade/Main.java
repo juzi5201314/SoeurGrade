@@ -51,7 +51,7 @@ public class Main extends PluginBase {
                 pk.x = (int) player.x;
                 pk.y = (int) player.y;
                 pk.z = (int) player.z;
-                pk.name = "music.test";
+                pk.name = "music.葬歌";
                 pk.volume = 400f;
                 pk.pitch = 1;
                 player.dataPacket(pk);
