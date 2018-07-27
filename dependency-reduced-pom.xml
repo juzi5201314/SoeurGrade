@@ -20,13 +20,9 @@
                 <includes>
                   <include>org.jcodec:jcodec</include>
                   <include>org.jcodec:jcodec-javase</include>
+                  <include>org.apache.ant:ant</include>
                 </includes>
               </artifactSet>
-              <transformers>
-                <transformer>
-                  <mainClass>itsu.mcbe.mcbemovie.core.ResourcePackMaker</mainClass>
-                </transformer>
-              </transformers>
             </configuration>
           </execution>
         </executions>

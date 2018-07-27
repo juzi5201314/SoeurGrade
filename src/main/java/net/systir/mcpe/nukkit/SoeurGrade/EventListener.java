@@ -7,6 +7,7 @@ import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
 import cn.nukkit.item.ItemMap;
+import cn.nukkit.network.protocol.PlaySoundPacket;
 import cn.nukkit.scheduler.AsyncTask;
 import cn.nukkit.scheduler.PluginTask;
 import net.systir.mcpe.nukkit.SoeurGrade.gui.ModalWindow;
@@ -22,20 +23,10 @@ public class EventListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = false)
     public void onJoin(PlayerJoinEvent event) {
+        //等待join完毕再进行操作，核心的傻逼问题。1秒应该能join完成，不能就凉凉。
         Main.This().getServer().getScheduler().scheduleDelayedTask(new PluginTask<Main>(Main.This()) {
             @Override
             public void onRun(int i) {
-                new ModalWindow()
-                        .SetTitle("what?")
-                        .SetContent("xxm is a sb?")
-                        .SetTrueButtonText("yes")
-                        .SetFalseButtonText("no")
-                        .OnTrue((player) -> player.sendMessage("蛤蛤蛤xxm真丑"))
-                        .OnFalse((player) -> {
-                            player.sendMessage("答案错误，请重新选择");
-                            onRun(i);
-                        });
-                        //.Send(event.getPlayer());
 
                 ItemMap map = (ItemMap) Item.get(ItemID.MAP);
                 event.getPlayer().getInventory().setItemInHand(map);

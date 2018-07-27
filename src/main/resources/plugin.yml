@@ -6,3 +6,8 @@ api: ["1.0.0"]
 author: 橘子
 description: A RPG plugin
 website: https://www.systir.cn
+
+commands:
+ play:
+  description: ""
+  usage: "/play"

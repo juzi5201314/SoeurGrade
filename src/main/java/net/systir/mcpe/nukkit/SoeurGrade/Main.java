@@ -1,6 +1,12 @@
 package net.systir.mcpe.nukkit.SoeurGrade;
 
+import cn.nukkit.Player;
+import cn.nukkit.command.Command;
+import cn.nukkit.command.CommandSender;
+import cn.nukkit.network.protocol.PlaySoundPacket;
 import cn.nukkit.plugin.PluginBase;
+import cn.nukkit.scheduler.AsyncTask;
+import net.systir.mcpe.nukkit.SoeurGrade.music.ResourcePackMaker;
 
 import java.io.File;
 
@@ -20,7 +26,34 @@ public class Main extends PluginBase {
     @Override
     public void onEnable() {
         getDataFolder().mkdirs();
+        new File(getDataFolder(), "/music/build").mkdirs();
         getServer().getPluginManager().registerEvents(new EventListener(), this);
         getServer().getPluginManager().registerEvents(new net.systir.mcpe.nukkit.SoeurGrade.gui.EventListener(), this);
+
+        ResourcePackMaker resourcePackMaker = new ResourcePackMaker("test.ogg");
+        resourcePackMaker.make();
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!command.getName().equals("play"))
+            return false;
+        Player player = (Player) sender;
+
+        getServer().getScheduler().scheduleAsyncTask(new AsyncTask() {
+            @Override
+            public void onRun() {
+                PlaySoundPacket pk = new PlaySoundPacket();
+                pk.x = (int) player.x;
+                pk.y = (int) player.y;
+                pk.z = (int) player.z;
+                pk.name = "music.test";
+                pk.volume = 400f;
+                pk.pitch = 1;
+                player.dataPacket(pk);
+
+            }
+        });
+        return true;
     }
 }
