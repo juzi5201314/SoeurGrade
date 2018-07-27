@@ -2,6 +2,8 @@ package net.systir.mcpe.nukkit.SoeurGrade;
 
 import cn.nukkit.plugin.PluginBase;
 
+import java.io.File;
+
 public class Main extends PluginBase {
 
     private static Main me;
@@ -17,6 +19,7 @@ public class Main extends PluginBase {
 
     @Override
     public void onEnable() {
+        getDataFolder().mkdirs();
         getServer().getPluginManager().registerEvents(new EventListener(), this);
         getServer().getPluginManager().registerEvents(new net.systir.mcpe.nukkit.SoeurGrade.gui.EventListener(), this);
     }
